@@ -28,7 +28,7 @@ def test_category_initialization(
     sample_category: Category,
     sample_product: Product,
 ) -> None:
-    """Test category initialization with correct values."""
+    """Test category initialization with correct values"""
     assert sample_category.name == "Test Category"
     assert sample_category.description == "Test Description"
     assert sample_category.product == [sample_product]
