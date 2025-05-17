@@ -40,3 +40,9 @@ if __name__ == '__main__':
     print(len(category1.product))
     print(category1.category_count)
     print(category1.product_count)
+    print(category2.product)
+    new_product2 = Product.new_product(
+        {"name": "Samsung2 Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 2,
+         "quantity":2})
+    category2.add_product(new_product2)
+    print(category2.product)

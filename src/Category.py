@@ -22,8 +22,10 @@ class Category:
 
     def add_product(self, product):
         """ Добавляет продукт в категорию и увеличивает счётчик """
-        self.__product.append(product)
-        self.product_count += 1
+        if isinstance(product, Product):
+            self.__product.append(product)
+            self.product_count += 1
+
 
 
 

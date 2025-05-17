@@ -13,7 +13,7 @@ def sample_product() -> Product:
 @pytest.fixture
 def sample_category(sample_product: Product) -> Category:
     """Fixture that returns a sample category for testing."""
-    return Category("Test Category", "Test Description", [sample_product])
+    return Category("Test Category", "Test Description", [sample_product,])
 
 
 @pytest.fixture
@@ -37,7 +37,7 @@ def test_category_initialization(
     """Test category initialization with correct values"""
     assert sample_category.name == "Test Category"
     assert sample_category.description == "Test Description"
-    assert sample_category.product == [sample_product,]
+    assert sample_category.product == str(sample_product)
 
 def test_category_count() -> None:
     """Test category and product counting."""
