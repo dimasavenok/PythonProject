@@ -13,7 +13,13 @@ def sample_product() -> Product:
 @pytest.fixture
 def sample_category(sample_product: Product) -> Category:
     """Fixture that returns a sample category for testing."""
-    return Category("Test Category", "Test Description", [sample_product])
+    return Category("Test Category", "Test Description", [sample_product,])
+
+
+@pytest.fixture
+def dict_of_product() -> dict:
+    return {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+         "quantity": 5}
 
 
 def test_product_initialization(sample_product: Product) -> None:
@@ -28,10 +34,10 @@ def test_category_initialization(
     sample_category: Category,
     sample_product: Product,
 ) -> None:
-    """Test category initialization with correct values."""
+    """Test category initialization with correct values"""
     assert sample_category.name == "Test Category"
     assert sample_category.description == "Test Description"
-    assert sample_category.product == [sample_product]
+    assert sample_category.product == str(sample_product)
 
 def test_category_count() -> None:
     """Test category and product counting."""
@@ -50,3 +56,13 @@ def test_category_count() -> None:
     assert Category.category_count == 2
     # Общее количество продуктов в категориях
     assert Category.product_count == 3
+
+
+def test_product_new_product( dict_of_product):
+    new_product1 = Product.new_product(dict_of_product)
+    assert  new_product1.name == "Samsung Galaxy S23 Ultra"
+    assert  new_product1.description == "256GB, Серый цвет, 200MP камера"
+    assert new_product1.price == 180000.0
+    assert new_product1.quantity == 5
+
+
