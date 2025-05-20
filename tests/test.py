@@ -65,4 +65,11 @@ def test_product_new_product( dict_of_product):
     assert new_product1.price == 180000.0
     assert new_product1.quantity == 5
 
+def test_str_and_add(sample_product, sample_category):
+    assert sample_category.product == str(sample_product)
+    assert str(sample_category) == f"{sample_category.name}, количество продуктов: 10 шт."
+    product1 = Product("Product 1", "Desc 1", 100.0, 5)
+    product2 = Product("Product 2", "Desc 2", 200.0, 3)
+    assert product1 + product2 == 100*5 + 200*3
+
 

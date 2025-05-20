@@ -13,6 +13,13 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(product)
 
+    def __str__(self):
+        summ = 0
+        for product in self.__product:
+            summ += product.quantity
+        return f"{self.name}, количество продуктов: {summ} шт."
+
+
     @property
     def product(self):
         result = []
