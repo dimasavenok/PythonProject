@@ -6,6 +6,7 @@ class Category:
     product_count = 0
 
 
+
     def __init__(self, name:str, description:str, product:list[Product]):
         self.name = name
         self.description = description
