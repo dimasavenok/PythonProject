@@ -14,6 +14,13 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(product)
 
+    def __str__(self):
+        summ = 0
+        for product in self.__product:
+            summ += product.quantity
+        return f"{self.name}, количество продуктов: {summ} шт."
+
+
     @property
     def product(self):
         result = []
@@ -23,10 +30,11 @@ class Category:
 
     def add_product(self, product):
         """ Добавляет продукт в категорию и увеличивает счётчик """
-        if isinstance(product, Product):
+        if isinstance(product, Product) or issubclass(product, Product):
             self.__product.append(product)
             self.product_count += 1
-
+        else:
+            raise TypeError
 
 
 
