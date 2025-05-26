@@ -14,6 +14,8 @@ class Product:
 
 
     def __add__(self, other: Union["Product", int, float]):
+        if type(self) != type(other):
+            raise TypeError
         other_sum = other.price * other.quantity
         return other_sum + self.__price * self.quantity
 

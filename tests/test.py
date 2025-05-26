@@ -2,6 +2,8 @@ import pytest
 
 from src.Product import Product
 from src.Category import Category
+from src.Smartphone import Smartphone
+from src.LawnGrass import LawnGrass
 
 
 @pytest.fixture
@@ -9,6 +11,16 @@ def sample_product() -> Product:
     """Fixture that returns a sample product for testing."""
     return Product("Test Product", "Test Description", 100.0, 10)
 
+@pytest.fixture
+def sample_smartphone() -> Smartphone:
+    """Fixture that returns a sample smartphone for testing."""
+    return Smartphone("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 95.5,
+                         "S23 Ultra", 256, "Серый")
+
+@pytest.fixture
+def sample_grass() -> Smartphone:
+    """Fixture that returns a sample grass for testing."""
+    return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
 
 @pytest.fixture
 def sample_category(sample_product: Product) -> Category:
@@ -72,4 +84,9 @@ def test_str_and_add(sample_product, sample_category):
     product2 = Product("Product 2", "Desc 2", 200.0, 3)
     assert product1 + product2 == 100*5 + 200*3
 
+def test_smartphone_grass(sample_smartphone, sample_grass, sample_category):
+    with pytest.raises(TypeError):
+        sample_smartphone + sample_grass
+    with pytest.raises(TypeError):
+        sample_category.add_product("sample_smartphone")
 

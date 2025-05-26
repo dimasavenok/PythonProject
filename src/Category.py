@@ -29,10 +29,11 @@ class Category:
 
     def add_product(self, product):
         """ Добавляет продукт в категорию и увеличивает счётчик """
-        if isinstance(product, Product):
+        if isinstance(product, Product) or issubclass(product, Product):
             self.__product.append(product)
             self.product_count += 1
-
+        else:
+            raise TypeError
 
 
 
