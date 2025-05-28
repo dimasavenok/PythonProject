@@ -1,13 +1,17 @@
 from typing import Union
 
+from src.BaseProduct import BaseProduct
+from src.PrintMixin import PrintMixin
 
-class Product:
+
+class Product(BaseProduct, PrintMixin):
 
     def __init__(self, name:str, description:str, price:float, quantity:int):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity= quantity
+        super().__init__(price)
 
     def __str__(self):
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
