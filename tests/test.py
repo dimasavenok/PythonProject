@@ -101,3 +101,6 @@ def test_middle_price_zero():
 
 def test_middle_price(sample_category):
     assert sample_category.middle_price() == 100
+
+
+
