@@ -1,4 +1,7 @@
+from itertools import product
+
 from src.Product import Product
+from src.errors.ZeroQuantityError import ZeroQuatityError
 
 
 class Category:
@@ -30,11 +33,22 @@ class Category:
     def add_product(self, product):
         """ Добавляет продукт в категорию и увеличивает счётчик """
         if isinstance(product, Product) or issubclass(product, Product):
-            self.__product.append(product)
-            self.product_count += 1
+            try:
+                self.__product.append(product)
+                self.product_count += 1
+            except ZeroQuatityError:
+                print("Колличество равно нулю")
+            finally:
+                print("обработка добавления товара завершена.")
         else:
             raise TypeError
 
+
+    def middle_price(self):
+        try:
+            return sum(product.price * product.quantity for product in self.__product) / sum(product.quantity for product in self.__product)
+        except ZeroDivisionError:
+            return 0
 
 
 
